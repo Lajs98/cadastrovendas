@@ -9,5 +9,5 @@ public interface IGenericDAO<T> {
 
     void excluir(T entity) throws DAOException;
 
-    List<T> buscarTodos() throws DAOException;
+    List<T> buscarTodos();
 }

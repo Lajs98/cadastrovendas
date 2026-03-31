@@ -6,7 +6,7 @@ public interface IClienteService {
 
     Boolean salvar(Cliente cliente);
 
-    Cliente buscarPorCPF(Long cpf); // erro aqui
+    Cliente buscarPorCPF(Long cpf);
 
     void excluir(Long cpf);
 

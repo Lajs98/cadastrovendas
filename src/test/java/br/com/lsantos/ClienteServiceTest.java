@@ -3,6 +3,7 @@ package br.com.lsantos;
 import br.com.lsantos.dao.ClienteDaoMock;
 import br.com.lsantos.dao.IClienteDao;
 import br.com.lsantos.domain.Cliente;
+import br.com.lsantos.services.ClienteService;
 import org.junit.Assert;
 
 import org.junit.Before;

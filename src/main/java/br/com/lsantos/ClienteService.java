@@ -1,8 +1,7 @@
-package br.com.lsantos;
+package br.com.lsantos.services;
 
 import br.com.lsantos.dao.IClienteDao;
 import br.com.lsantos.domain.Cliente;
-import br.com.lsantos.services.IClienteService;
 
 public class ClienteService implements IClienteService {
 

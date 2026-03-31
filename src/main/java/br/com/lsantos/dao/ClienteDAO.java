@@ -9,7 +9,7 @@ public class ClienteDAO extends GenericDAO<Cliente> implements IClienteDao {
     @Override
     public Boolean salvar(Cliente cliente) {
         try {
-            cadastrar(cliente); // usa o GenericDAO
+            cadastrar(cliente);
             return true;
         } catch (DAOException e) {
             System.out.println(e.getMessage());
@@ -20,7 +20,7 @@ public class ClienteDAO extends GenericDAO<Cliente> implements IClienteDao {
     @Override
     public Cliente buscarPorCPF(Long cpf) {
         for (Cliente c : lista) {
-            if (c.getCpf().equals(cpf)) {
+            if (c.getCpf() != null && c.getCpf().equals(cpf)) {
                 return c;
             }
         }
@@ -30,12 +30,16 @@ public class ClienteDAO extends GenericDAO<Cliente> implements IClienteDao {
     @Override
     public void excluir(Long cpf) {
         Cliente cliente = buscarPorCPF(cpf);
-        if (cliente != null) {
-            try {
-                excluir(cliente); // usa o GenericDAO
-            } catch (DAOException e) {
-                System.out.println(e.getMessage());
-            }
+
+        if (cliente == null) {
+            System.out.println("Cliente não encontrado");
+            return;
+        }
+
+        try {
+            super.excluir(cliente); // 👈 importante usar super
+        } catch (DAOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
