@@ -1,28 +1,46 @@
 package br.com.lsantos.dao;
 
 import br.com.lsantos.domain.Cliente;
+import br.com.lsantos.exception.DAOException;
+import br.com.lsantos.generic.GenericDAO;
 
-public class ClienteDAO implements IClienteDao {
+public class ClienteDAO extends GenericDAO<Cliente> implements IClienteDao {
 
     @Override
     public Boolean salvar(Cliente cliente) {
-            // TODO Auto-generated method stub
-        return true;
+        try {
+            cadastrar(cliente); // usa o GenericDAO
+            return true;
+        } catch (DAOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public Cliente buscarPorCPF(Long cpf) {
-        // TODO Auto-generated method stub
+        for (Cliente c : lista) {
+            if (c.getCpf().equals(cpf)) {
+                return c;
+            }
+        }
         return null;
     }
 
     @Override
     public void excluir(Long cpf) {
-        // TODO Auto-generated method stub
+        Cliente cliente = buscarPorCPF(cpf);
+        if (cliente != null) {
+            try {
+                excluir(cliente); // usa o GenericDAO
+            } catch (DAOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Override
     public void alterar(Cliente cliente) {
-        // TODO Auto-generated method stub
+        System.out.println("Alterar não implementado");
     }
 }
